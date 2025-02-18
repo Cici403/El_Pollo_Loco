@@ -5,6 +5,8 @@ class MovableObject{
 
     moveRight(){
 
-
+    }
+    moveLeft(){
+        
     }
 }
