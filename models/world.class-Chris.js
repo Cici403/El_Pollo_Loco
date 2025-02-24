@@ -10,18 +10,11 @@ class World {
   ];
   canvas;
   ctx;
-  keyboard;
 
-  constructor(canvas, keyboard) {
+  constructor(canvas) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
-    this.keyboard = keyboard;
     this.draw();
-    this.setWorld();
-  }
-
-  setWorld() {
-    this.character.world = this;
   }
 
   draw() {
@@ -43,6 +36,7 @@ class World {
       this.addToMap(o);
     });
   }
+
 
   addToMap(mo) {
     if(mo.otherDirection){
