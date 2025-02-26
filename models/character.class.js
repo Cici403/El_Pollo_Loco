@@ -21,7 +21,11 @@ class Character extends MovableObject {
 
   animate() {
     setInterval(() => {this.moveCharacter()}, 1000 / 60);
-    setInterval(() => {this.animateCharacter()}, 50);
+    setInterval(() => {
+      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+        this.playAnimation(this.IMAGES_WALKING);
+      }
+    }, 50);
   }
 
   moveCharacter(){
@@ -33,18 +37,8 @@ class Character extends MovableObject {
       this.x -= this.speed;
       this.otherDirection = true;
     }
-    this.world.camera_x = -this.x + 100;
+    this.world.camera_x = -this.x + 150;
   }
-
-  animateCharacter(){
-    if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-      let i = this.currentImage % this.IMAGES_WALKING.length;
-      let path = this.IMAGES_WALKING[i];
-      this.img = this.imageCache[path];
-      this.currentImage++;
-    }
-  }
-
 
   jump() {}
 }
