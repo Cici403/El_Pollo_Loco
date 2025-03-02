@@ -10,6 +10,7 @@ class MovableObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 2.5;
+  energy = 100;
 
   applyGravity() {
     setInterval(() => {
@@ -68,5 +69,22 @@ class MovableObject {
 
   jump() {
     this.speedY = 30;
+  }
+
+  isColliding(mo) {
+    return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;
+  }
+
+  hit() {
+    console.log("hit", this.energy);
+
+    this.energy -= 5;
+    if (this.energy < 0) {
+      this.energy = 0;
+    }
+  }
+
+  isDead() {
+    return this.energy == 0;
   }
 }
