@@ -1,11 +1,4 @@
-class MovableObject {
-  x = 120;
-  y = 250;
-  img;
-  width = 100;
-  height = 180;
-  imageCache = {};
-  currentImage = 0;
+class MovableObject extends DrawableObject {
   speed = 0.15;
   otherDirection = false;
   speedY = 0;
@@ -24,33 +17,6 @@ class MovableObject {
 
   isAboveGround() {
     return this.y < 220;
-  }
-
-  loadImage(path) {
-    this.img = new Image();
-    this.img.src = path;
-  }
-
-  draw(ctx) {
-    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-  }
-
-  drawFrame(ctx) {
-    if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
-      ctx.beginPath();
-      ctx.lineWidth = "5";
-      ctx.strokeStyle = "blue";
-      ctx.rect(this.x, this.y, this.width, this.height);
-      ctx.stroke();
-    }
-  }
-
-  loadImages(arr) {
-    arr.forEach((path) => {
-      let img = new Image();
-      img.src = path;
-      this.imageCache[path] = img;
-    });
   }
 
   playAnimation(images) {
@@ -89,9 +55,9 @@ class MovableObject {
     return this.energy == 0;
   }
 
-  isHurt(){
-    let timepassed = new Date().getTime() - this.lastHit;
-    timepassed = timepassed / 1000;
-    return timepassed < 0.75;
+  isHurt() {
+    let timePassed = new Date().getTime() - this.lastHit;
+    timePassed = timePassed / 1000;
+    return timePassed < 0.5;
   }
 }
